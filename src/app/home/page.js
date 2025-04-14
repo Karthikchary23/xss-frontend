@@ -24,6 +24,8 @@ const Page = () => {
 
   // Script injection testing (XSS)
   useEffect(() => {
+    if (typeof window === "undefined") return; // early exit for SSR
+
     const msg = searchParams.get("message");
     if (msg) {
       setRawMessage(msg);
